@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Etch-A-Sketch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Move your mouse over the grid to draw a picture</h1>
+    <button class='clear'>Clear</button>
+    <button class='reshape'>Change Pixel Size</button>
+    <button class='color'>Change Color</button>
+    <div class="container"></div>
+    
+    <script>
+        let rows = 20;
+        let columns = 20;
+        color = true
+        const container = document.querySelector('.container');
+
+        createContainer(rows,columns);
+        makeGrid(rows,columns);
+        toggleColorListener();
+        addColorListener();
+        addReshapeListener(); 
+        addClearListener();       
+
+        function createContainer(rows, columns){
+            container.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+            container.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+        }
+        function makeGrid(rows, columns){
+            for (i=0; i<rows; i++){
+                for (j=0; j<columns; j++){
+                    const div = document.createElement('div');
+                    div.classList.add('square');
+                    container.appendChild(div);
+                    div.style.backgroundColor ='#93cf95';
+                }
+            }
+        }        
+        function toggleColorListener(){
+            const divs = document.querySelectorAll('.square');
+            color = !color;
+            if (color){
+                divs.forEach((div) => {
+                    div.addEventListener('mouseenter', () => div.style.background = getRandomColor())});
+                }
+            else if (!color){
+                divs.forEach((div) => {
+                    div.addEventListener('mouseenter', () => div.style.background = 'black')});
+            }
+        }
+        function addColorListener(){
+            const colorBtn = document.querySelector('.color');
+            colorBtn.addEventListener('click', toggleColorListener);
+        }
+        function addReshapeListener(){
+            const reshape = document.querySelector('.reshape');
+            reshape.addEventListener('click', performReshape)
+        }
+        function performReshape(){
+            rows = columns = prompt('Enter a number between 10 and 100');
+            createContainer(rows,columns);
+            makeGrid(rows, columns);
+            toggleColorListener();
+        }
+        function getRandomColor() {
+            let letters = '0123456789ABCDEF';
+            let color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+            }
+        function addClearListener(){
+            const clearBtn = document.querySelector('.clear');
+            clearBtn.addEventListener('click', clearDivs);
+            function clearDivs(){
+                const divs = document.querySelectorAll('.square');
+                divs.forEach((div) => div.style.background = '#93cf95')
+            }
+        }
+    </script>
+</body>
+</html>

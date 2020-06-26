@@ -65,7 +65,9 @@
             rows = columns = prompt('Enter a number between 10 and 100');
             createContainer(rows,columns);
             makeGrid(rows, columns);
+            color = !color;
             toggleColorListener();
+            clearDivs();
         }
         function getRandomColor() {
             let letters = '0123456789ABCDEF';
@@ -78,10 +80,10 @@
         function addClearListener(){
             const clearBtn = document.querySelector('.clear');
             clearBtn.addEventListener('click', clearDivs);
-            function clearDivs(){
-                const divs = document.querySelectorAll('.square');
-                divs.forEach((div) => div.style.background = '#93cf95')
-            }
+        }
+        function clearDivs(){
+            const divs = document.querySelectorAll('.square');
+            divs.forEach((div) => div.style.background = '#93cf95')
         }
     </script>
 </body>

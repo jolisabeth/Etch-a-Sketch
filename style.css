@@ -1,9 +1,5 @@
 body{
-    text-align: center;
-    justify-items: center;
     background-color: #3d8b40;
-    /* background-color: #800040; */
-    /* background-color: #99004d; */
     font-family: monospace;
 }
 
@@ -16,9 +12,7 @@ button{
     padding: 1rem .5rem;
     width: 10rem;
     text-align: center;
-    /* color:; */
     background: #93cf95;
-    /* text-shadow: 0 0 .5rem black; */
     outline: none;
 }
 
@@ -32,6 +26,7 @@ button:hover{
     height: 500px;
     margin-right: 0px; 
     border: .15rem solid black;
+    text-align: center;
 
 }
 
